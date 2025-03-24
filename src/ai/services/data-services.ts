@@ -1,4 +1,3 @@
-
 const initHeaders = () => {
   const options: RequestInit = {
     mode: "cors",
@@ -9,11 +8,9 @@ const initHeaders = () => {
     },
     redirect: "follow",
     referrerPolicy: "no-referrer",
-  }
+  };
   return options;
-
-}
-
+};
 
 export const put = async (url = "", data = {}) => {
   const options = initHeaders();
@@ -73,26 +70,26 @@ export const purge = async (url = "", _data = {}) => {
 };
 
 function handleErrors(operation: string, response: Response) {
-    if (!response.ok) {
+  if (!response.ok) {
     const message = `An error has occured ${operation} ${response.url} : ${response.status}`;
-    
+
     // const err = {
     //   url:response.url,
     //   status: response.status,
     //   operation,
     //   errorMessage:response.statusText
     // };
-    throw new Error(message);    
-  } 
+    throw new Error(message);
+  }
 }
-function handleCustomError (data: any) {
-  if(data.customstatus && data.customstatus !==200){
+function handleCustomError(data: any) {
+  if (data.customstatus && data.customstatus !== 200) {
     const message = `An error has occured ${data.customstatus} : ${data.message}`;
     // const err = {
     //   status: data.customstatus,
     //   errorMessage:data.message
     // };
-    throw new Error(message);  
+    throw new Error(message);
   }
   return data;
 }
