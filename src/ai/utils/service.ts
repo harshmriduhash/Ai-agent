@@ -27,7 +27,9 @@ export const saveTools = (tools: Tool[]) => {
   localStorage.setItem(AI_TOOLS_KEY, JSON.stringify(tools));
 };
 
-export const saveSystemPromptTemplates = (systemRolePrompts: SystemRolePrompt[]) => {
+export const saveSystemPromptTemplates = (
+  systemRolePrompts: SystemRolePrompt[]
+) => {
   localStorage.setItem(AI_ROLES_KEY, JSON.stringify(systemRolePrompts));
 };
 
@@ -35,7 +37,9 @@ export const deleteSystemPromptTemplate = (id: string) => {
   const data = localStorage.getItem(AI_ROLES_KEY);
   if (data) {
     const systemRolePrompts = JSON.parse(data) as SystemRolePrompt[];
-    const updatedPrompts = systemRolePrompts.filter(prompt => prompt.id !== id);
+    const updatedPrompts = systemRolePrompts.filter(
+      (prompt) => prompt.id !== id
+    );
     localStorage.setItem(AI_ROLES_KEY, JSON.stringify(updatedPrompts));
   }
 };
@@ -56,7 +60,7 @@ export const deleteAgent = (name: string) => {
   const data = localStorage.getItem(AI_AGENTS_KEY);
   if (data) {
     const agents = JSON.parse(data) as AIAgent[];
-    const updatedAgents = agents.filter(agent => agent.name !== name);
+    const updatedAgents = agents.filter((agent) => agent.name !== name);
     localStorage.setItem(AI_AGENTS_KEY, JSON.stringify(updatedAgents));
   }
 };
@@ -78,7 +82,7 @@ export const deleteEnvironmentByName = (name: string) => {
   const data = localStorage.getItem(ENVIRONMENTS_KEY);
   if (data) {
     const environments = JSON.parse(data) as Environment[];
-    const updatedEnvironments = environments.filter(env => env.name !== name);
+    const updatedEnvironments = environments.filter((env) => env.name !== name);
     localStorage.setItem(ENVIRONMENTS_KEY, JSON.stringify(updatedEnvironments));
   }
 };
@@ -93,5 +97,4 @@ export const getDefaultAI = (): Environment | undefined => {
     return JSON.parse(data) as Environment;
   }
   return undefined;
-}
-
+};
