@@ -4,25 +4,25 @@ export const API_VERSION_PATH = import.meta.env.VITE_API_VERSION_PATH || "/v1";
 export const HOST_URL_VERSION_PATH = `${HOST_URL}${API_VERSION_PATH}`;
 
 const storeAppAuth = {
-    token:
-      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJobXNjdXN0MSIsImF1ZCI6IndlYiIsImV4cCI6MTc0MTQ4Njk3NiwiaWF0IjoxNzQwODgyMTc2fQ.HF1-m1zNf4cC35oJHTwRe9rwyMW03BNxKNSyevLHGm-p0l1sKEXbUEoJVgWjkBuDhj8gw9YJXxUDwmpfQ3ICEw",
-    timestamp: 1740925376752,
-    userinfo: {
-      customertype: "customer",
-      profileCompletion: true,
-      accesscode: 0,
-      userid: "8",
-      email: "hmscust1@gm.com",
-      username: "hmscust1",
-    },
-  };
+  token:
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJobXNjdXN0MSIsImF1ZCI6IndlYiIsImV4cCI6MTc0MTQ4Njk3NiwiaWF0IjoxNzQwODgyMTc2fQ.HF1-m1zNf4cC35oJHTwRe9rwyMW03BNxKNSyevLHGm-p0l1sKEXbUEoJVgWjkBuDhj8gw9YJXxUDwmpfQ3ICEw",
+  timestamp: 1740925376752,
+  userinfo: {
+    customertype: "customer",
+    profileCompletion: true,
+    accesscode: 0,
+    userid: "8",
+    email: "hmscust1@gm.com",
+    username: "hmscust1",
+  },
+};
 
-export const authHeaders : Array<any>= [
-  {'getAllAddress': storeAppAuth},
-  {'getAllStores': storeAppAuth},
-  {'getAddressBySno': storeAppAuth},
-  {'getStoresBySno':storeAppAuth},
-  {'getProfile': storeAppAuth}
+export const authHeaders: Array<any> = [
+  { getAllAddress: storeAppAuth },
+  { getAllStores: storeAppAuth },
+  { getAddressBySno: storeAppAuth },
+  { getStoresBySno: storeAppAuth },
+  { getProfile: storeAppAuth },
 ];
 
 export const getFullPrompt = (prompt: string) => `
