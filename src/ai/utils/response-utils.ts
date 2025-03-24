@@ -28,7 +28,7 @@ export async function handleNonStreamResponse(
     console.log("reveived tool_calls from agent", toolCalls, data);
     const toolManager = new ToolCallManager(payload, toolCalls);
     console.log("invoking ToolCallManager to interceptToolCalls");
-    const result = await toolManager.interceptToolCalls(toolStream,controller);
+    const result = await toolManager.interceptToolCalls(toolStream, controller);
     console.log("interceptToolCalls : done");
     return result;
   }
