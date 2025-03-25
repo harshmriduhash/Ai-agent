@@ -7,10 +7,15 @@ interface ParameterListProps {
   setParameters: (params: Parameter[]) => void;
 }
 
-const ParameterList: FC<ParameterListProps> = ({ parameters, setParameters }) => {
+const ParameterList: FC<ParameterListProps> = ({
+  parameters,
+  setParameters,
+}) => {
   const [form] = Form.useForm();
   const [paramFieldsFilled, setParamFieldsFilled] = useState(false);
-  const [editingParamIndex, setEditingParamIndex] = useState<number | null>(null);
+  const [editingParamIndex, setEditingParamIndex] = useState<number | null>(
+    null
+  );
 
   const addOrUpdateParameter = () => {
     form
@@ -101,8 +106,12 @@ const ParameterList: FC<ParameterListProps> = ({ parameters, setParameters }) =>
           <List.Item
             key={index}
             actions={[
-              <Button type="link" onClick={() => editParameter(index)}>Edit</Button>,
-              <Button type="link" danger onClick={() => deleteParameter(index)}>Delete</Button>,
+              <Button type="link" onClick={() => editParameter(index)}>
+                Edit
+              </Button>,
+              <Button type="link" danger onClick={() => deleteParameter(index)}>
+                Delete
+              </Button>,
             ]}
           >
             <strong>{param.name}</strong>: {param.type} - {param.description}{" "}
@@ -139,13 +148,21 @@ const ParameterList: FC<ParameterListProps> = ({ parameters, setParameters }) =>
         <Form.Item name="paramDescription" label="Parameter Description">
           <Input />
         </Form.Item>
-        <Form.Item name="paramRequired" valuePropName="checked" label="Parameter Required">
+        <Form.Item
+          name="paramRequired"
+          valuePropName="checked"
+          label="Parameter Required"
+        >
           <Checkbox />
         </Form.Item>
         <Form.Item name="paramEnum" label="Parameter Enum (comma separated)">
           <Input />
         </Form.Item>
-        <Button type="dashed" onClick={addOrUpdateParameter} disabled={!paramFieldsFilled}>
+        <Button
+          type="dashed"
+          onClick={addOrUpdateParameter}
+          disabled={!paramFieldsFilled}
+        >
           {editingParamIndex !== null ? "Update Parameter" : "+ Add Parameter"}
         </Button>
       </Form>
