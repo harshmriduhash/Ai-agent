@@ -48,7 +48,8 @@ const AddTool: FC<AddToolProps> = ({
         { role: "system", content: "You are a Document writer." },
         {
           role: "user",
-          content: `write a single line tool description for the toolname: ${toolName} so the use will understand what the tool does. just return description DONOT add explaination`,
+          content: `write a single line tool description for the toolname: ${toolName} so the use will understand what the tool does. 
+          just return description DONOT add explaination`,
         },
       ],
       temperature: 0.8,
@@ -238,7 +239,8 @@ const AddTool: FC<AddToolProps> = ({
             <Form.Item
               name="environmentId"
               label="Environment"
-              rules={[{ required: false, message: "Please select the method!" },
+              rules={[
+                { required: false, message: "Please select the method!" },
               ]}
             >
               <SelectEnvironment
@@ -258,14 +260,16 @@ const AddTool: FC<AddToolProps> = ({
               name="url"
               label="URL"
               rules={[
-              { required: true, message: "Please input the URL!" },
-              { type: "url", message: "Please enter a valid URL!" },
-              {
-                validator: (_, value) =>
-                value && value.endsWith("/")
-                  ? Promise.reject(new Error("URL should not end with a '/'"))
-                  : Promise.resolve(),
-              },
+                { required: true, message: "Please input the URL!" },
+                { type: "url", message: "Please enter a valid URL!" },
+                {
+                  validator: (_, value) =>
+                    value && value.endsWith("/")
+                      ? Promise.reject(
+                          new Error("URL should not end with a '/'")
+                        )
+                      : Promise.resolve(),
+                },
               ]}
             >
               <Input />
@@ -278,12 +282,11 @@ const AddTool: FC<AddToolProps> = ({
                 { type: "string", message: "Please enter a valid Api Path!" },
                 {
                   validator: (_, value) =>
-                  value && value.startsWith("/")
-                    ? 
-                    Promise.resolve()
-                    :
-                    Promise.reject(new Error("URL should start with a '/'")),
-                     
+                    value && value.startsWith("/")
+                      ? Promise.resolve()
+                      : Promise.reject(
+                          new Error("URL should start with a '/'")
+                        ),
                 },
               ]}
             >
