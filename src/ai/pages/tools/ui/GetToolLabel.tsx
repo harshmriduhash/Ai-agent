@@ -9,21 +9,21 @@ type GetToolLabelProps = {
   showParams?: boolean;
 };
 
-const GetToolLabel: FC<GetToolLabelProps> = ({ tool,showParams }) => {
-    const {screenSize } =useScreenSize();
+const GetToolLabel: FC<GetToolLabelProps> = ({ tool, showParams }) => {
+  const { screenSize } = useScreenSize();
 
-    let styleObj = {};
-    if(screenSize === 'mobile'){
-        styleObj = {
-            whiteSpace: 'nowrap',
-            textOverflow: 'ellipsis',
-        }
-    }
+  let styleObj = {};
+  if (screenSize === "mobile") {
+    styleObj = {
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
+    };
+  }
 
   return (
     <>
       {
-        <span  style={styleObj} >
+        <span style={styleObj}>
           {tool.type !== "rest" ? (
             <FunctionOutlined style={{ color: "#ff5722" }} />
           ) : (
@@ -37,7 +37,9 @@ const GetToolLabel: FC<GetToolLabelProps> = ({ tool,showParams }) => {
           >
             {`${tool.function.name}`}
           </strong>
-          {showParams && <span>  {`( ${getFuncParams(tool.function.parameters)} )`}</span>}
+          {showParams && (
+            <span> {`( ${getFuncParams(tool.function.parameters)} )`}</span>
+          )}
         </span>
       }
     </>
@@ -50,7 +52,7 @@ type GetToolIconProps = {
   type: string;
 };
 
-export const GetToolIcon:FC<GetToolIconProps> = ({type}) => {
+export const GetToolIcon: FC<GetToolIconProps> = ({ type }) => {
   return type !== "rest" ? (
     <FunctionOutlined style={{ color: "#ff5722" }} />
   ) : (
