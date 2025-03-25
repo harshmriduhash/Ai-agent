@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Card, Row, Col, Button, Space, Modal } from "antd";
 import "./toolitem.css";
 import EditTool from "./EditTool";
-import {EditOutlined, DeleteOutlined, FunctionOutlined, ApiOutlined } from "@ant-design/icons"; 
+import {
+  EditOutlined,
+  DeleteOutlined,
+  FunctionOutlined,
+  ApiOutlined,
+} from "@ant-design/icons";
 
 export interface Parameter {
   name: string;
@@ -21,11 +26,11 @@ export interface Tool {
   };
   id: string;
   toolName: string;
-  method?: 'GET'|'POST';
+  method?: "GET" | "POST";
   url?: string;
   apiPath?: string;
   environmentId?: string;
-  bodyType?: 'JSON'|'STRING'|'FORM';
+  bodyType?: "JSON" | "STRING" | "FORM";
 }
 
 interface ToolItemProps {
@@ -38,36 +43,52 @@ const ToolItem: React.FC<ToolItemProps> = ({ tool, onEdit, onDelete }) => {
   return (
     <Card
       className="tool__item"
-      title={<span>
-        { tool.type !== 'rest' ? <FunctionOutlined style={{color:"#ff5722"}} /> : <ApiOutlined  style={{color:"#2196f3"}}/>}
-       <strong style={{
-        textTransform: "capitalize",
-       }} > {`${tool.function.name}`}</strong>
-      </span>}
+      title={
+        <span>
+          {tool.type !== "rest" ? (
+            <FunctionOutlined style={{ color: "#ff5722" }} />
+          ) : (
+            <ApiOutlined style={{ color: "#2196f3" }} />
+          )}
+          <strong
+            style={{
+              textTransform: "capitalize",
+            }}
+          >
+            {" "}
+            {`${tool.function.name}`}
+          </strong>
+        </span>
+      }
       style={{
         marginBottom: "16px",
         height: "350px",
         //  width:'350px'
       }}
-      extra={<Space>
-        <Button icon={<EditOutlined />} onClick={onEdit}>Edit</Button>
-        <Button
-          icon={<DeleteOutlined />}
-          onClick={() => {
-            Modal.confirm({
-              title: 'Are you sure you want to delete this tool?',
-              onOk: onDelete,
-            });
-          }}
-        >
-          Delete
-        </Button>
-      </Space>
-    }
+      extra={
+        <Space>
+          <Button icon={<EditOutlined />} onClick={onEdit}>
+            Edit
+          </Button>
+          <Button
+            icon={<DeleteOutlined />}
+            onClick={() => {
+              Modal.confirm({
+                title: "Are you sure you want to delete this tool?",
+                onOk: onDelete,
+              });
+            }}
+          >
+            Delete
+          </Button>
+        </Space>
+      }
     >
-      {tool.type === 'rest' && <p>
-        <strong>{tool.method} :</strong> <>{`${tool.url}${tool.apiPath}`}</>
-      </p>}
+      {tool.type === "rest" && (
+        <p>
+          <strong>{tool.method} :</strong> <>{`${tool.url}${tool.apiPath}`}</>
+        </p>
+      )}
       <p>
         <strong>Description:</strong> {tool.function.description}
       </p>
@@ -92,7 +113,11 @@ type ToolListProps = {
   deleteTool: (id: string) => void;
 };
 
-const ToolList: React.FC<ToolListProps> = ({ tools, updateTool, deleteTool }) => {
+const ToolList: React.FC<ToolListProps> = ({
+  tools,
+  updateTool,
+  deleteTool,
+}) => {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
 
@@ -116,7 +141,11 @@ const ToolList: React.FC<ToolListProps> = ({ tools, updateTool, deleteTool }) =>
       <Row gutter={16}>
         {tools.map((tool) => (
           <Col span={8} key={tool.function.name}>
-            <ToolItem tool={tool} onEdit={() => handleEdit(tool)} onDelete={() => handleDelete(tool.id)} />
+            <ToolItem
+              tool={tool}
+              onEdit={() => handleEdit(tool)}
+              onDelete={() => handleDelete(tool.id)}
+            />
           </Col>
         ))}
       </Row>
@@ -126,7 +155,6 @@ const ToolList: React.FC<ToolListProps> = ({ tools, updateTool, deleteTool }) =>
           setIsModalVisible={setIsEditModalVisible}
           tool={selectedTool}
           updateTool={handleUpdateTool}
-
         />
       )}
     </div>
