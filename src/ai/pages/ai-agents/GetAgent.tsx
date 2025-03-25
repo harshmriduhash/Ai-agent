@@ -104,7 +104,14 @@ const GetAgent: FC<GetAgentProps> = ({ agent, availableTools }) => {
       </Descriptions.Item>
     </Descriptions>
   ) : (
-    <div style={{ height: "100%", padding:"16px", display: "flex", flexDirection: "column" }}>
+    <div
+      style={{
+        height: "100%",
+        padding: "16px",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Meta
         title={agent.name}
         description={
