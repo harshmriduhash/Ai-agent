@@ -3,7 +3,7 @@ import { Tool } from "../../../components/types/tool";
 import { List, Button } from "antd";
 import GetToolLabel from "./GetToolLabel";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import "./managetool.css"
+import "./managetool.css";
 
 type GetToolListProps = {
   tools: Tool[];
@@ -99,7 +99,7 @@ const ManageToolList: FC<GetToolListProps> = ({
               <span
                 style={{
                   maxHeight: `${maxHeight ? maxHeight * 0.75 + "px" : "auto"}`,
-                  overflowY: `${maxHeight ? 'clip' : "auto"}`,
+                  overflowY: `${maxHeight ? "clip" : "auto"}`,
                 }}
               >
                 {tool.function.description}
