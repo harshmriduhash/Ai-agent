@@ -77,14 +77,13 @@ const EditTool: FC<EditToolProps> = ({
   };
 
   useEffect(() => {
-    if (responseData && responseData !== null) {  
+    if (responseData && responseData !== null) {
       const { parsedResponse } = parseResponse(responseData);
-      if(parsedResponse){
+      if (parsedResponse) {
         const strippedDescription = parsedResponse.replace(/^"|"$/g, "");
         console.log("Tool Description: ", strippedDescription);
         form.setFieldsValue({ function: { description: strippedDescription } });
       }
-      
     }
   }, [responseData]);
 
@@ -99,7 +98,7 @@ const EditTool: FC<EditToolProps> = ({
       .then((values) => {
         console.log(values);
         const updatedTool: Tool = {
-            ...tool,
+          ...tool,
           type: values.type,
           function: {
             name: values.function.name,
@@ -112,8 +111,8 @@ const EditTool: FC<EditToolProps> = ({
           environmentId: values.environmentId,
           bodyType: values.bodyType,
         };
-        if(!updatedTool.id){
-            updatedTool.id = Math.random().toString(36).substr(2, 9);
+        if (!updatedTool.id) {
+          updatedTool.id = Math.random().toString(36).substr(2, 9);
         }
         updateTool(updatedTool);
         setIsModalVisible(false);
@@ -181,8 +180,13 @@ const EditTool: FC<EditToolProps> = ({
           rules={[{ required: true, message: "Please select the tool type!" }]}
         >
           <Select onChange={(value) => setToolType(value)}>
-            <Option value="function"><GetToolIcon type="function" /> {' '}Function</Option>
-            <Option value="rest"> <GetToolIcon type="rest" /> {' '} Rest</Option>
+            <Option value="function">
+              <GetToolIcon type="function" /> Function
+            </Option>
+            <Option value="rest">
+              {" "}
+              <GetToolIcon type="rest" /> Rest
+            </Option>
           </Select>
         </Form.Item>
         {toolType === "rest" && (
@@ -200,7 +204,9 @@ const EditTool: FC<EditToolProps> = ({
             <Form.Item
               name="environmentId"
               label="Environment"
-              rules={[{ required: false, message: "Please select the method!" }]}
+              rules={[
+                { required: false, message: "Please select the method!" },
+              ]}
             >
               <SelectEnvironment
                 envType="Tool"
@@ -225,9 +231,11 @@ const EditTool: FC<EditToolProps> = ({
                 { type: "url", message: "Please enter a valid URL!" },
                 {
                   validator: (_, value) =>
-                  value && value.endsWith("/")
-                    ? Promise.reject(new Error("URL should not end with a '/'"))
-                    : Promise.resolve(),
+                    value && value.endsWith("/")
+                      ? Promise.reject(
+                          new Error("URL should not end with a '/'")
+                        )
+                      : Promise.resolve(),
                 },
               ]}
             >
@@ -241,12 +249,11 @@ const EditTool: FC<EditToolProps> = ({
                 { type: "string", message: "Please enter a valid Api Path!" },
                 {
                   validator: (_, value) =>
-                  value && value.startsWith("/")
-                    ? 
-                    Promise.resolve()
-                    :
-                    Promise.reject(new Error("URL should start with a '/'")),
-                     
+                    value && value.startsWith("/")
+                      ? Promise.resolve()
+                      : Promise.reject(
+                          new Error("URL should start with a '/'")
+                        ),
                 },
               ]}
             >
