@@ -135,7 +135,7 @@ const FormSection: React.FC<FormSectionProps> = ({
     handleSubmit(payload);
   };
 
-  const handleAddTool = (tool: Tool|null) => {
+  const handleAddTool = (tool: Tool | null) => {
     if (selectedTool) {
       const updatedTools = [...tools, selectedTool];
       const agentTools = convertTools2AgentTools(updatedTools);
@@ -169,7 +169,7 @@ const FormSection: React.FC<FormSectionProps> = ({
   const onToolChange = (tools: Tool[]) => {
     const agentTools = convertTools2AgentTools(tools);
     form.setFieldValue("tools", agentTools);
-  }
+  };
 
   const handleCancel = () => {
     if (abortController) {
@@ -252,11 +252,13 @@ const FormSection: React.FC<FormSectionProps> = ({
           label="Model"
           name="model"
           rules={[{ required: true, message: "Please select a model" }]}
-          >
-          <GetAIModel onChange={(v) => {
-            console.log({ v });
-            form.setFieldValue("model", v);
-          }} />
+        >
+          <GetAIModel
+            onChange={(v) => {
+              console.log({ v });
+              form.setFieldValue("model", v);
+            }}
+          />
         </Form.Item>
 
         <Form.Item label="Select AI Role" name="systemRoleTemplate" rules={[]}>
@@ -380,18 +382,14 @@ const FormSection: React.FC<FormSectionProps> = ({
 
         <Typography.Title level={4}>Selected Tools</Typography.Title>
 
-        
         <Form.Item label="Tools" name="tools">
           {/* {GetAITools(tools, removeTool, availableTools, setAvailableTools, allTools, handleToolSelect)} */}
 
           <GetAITools onChange={onToolChange} />
         </Form.Item>
       </Card>
-      
     </Form>
   );
 };
 
 export default FormSection;
-
-
