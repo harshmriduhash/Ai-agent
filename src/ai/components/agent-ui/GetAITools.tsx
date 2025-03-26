@@ -43,7 +43,7 @@ const GetAITools: FC<GetAIToolsProps> = ({
     const updatedTools = tools.filter(
       (t) => t.function.name !== tool.function.name
     );
-    console.log({updatedTools})
+    console.log({ updatedTools });
     removeTool && removeTool(tool);
     setTools(updatedTools);
     onChange(updatedTools);
@@ -56,7 +56,7 @@ const GetAITools: FC<GetAIToolsProps> = ({
   const handleAdd = () => {
     if (selectedTool) {
       const updatedTools = [...tools, selectedTool];
-      console.log({updatedTools})
+      console.log({ updatedTools });
       handleAddTool && handleAddTool(selectedTool);
       setTools(updatedTools);
       onChange(updatedTools);
@@ -127,7 +127,12 @@ const GetAITools: FC<GetAIToolsProps> = ({
         )}
       /> */}
 
-        <ManageToolList  tools={availableTools} showAdd  enabledTools={tools} handleToolSelect={handleToolSelect} />
+      <ManageToolList
+        tools={availableTools}
+        showAdd
+        enabledTools={tools}
+        handleToolSelect={handleToolSelect}
+      />
 
       <br />
       <ManageToolList tools={tools} showRemove handleRemove={handleRemove} />
