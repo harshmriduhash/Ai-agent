@@ -1,22 +1,15 @@
 import { useEffect, useState } from "react";
-import {
-  Row,
-  Col,
-} from "antd";
+import { Row, Col } from "antd";
 import "./aiagent.css";
-import {
-  ChatHistory,
-  ToolMessage,
-  UserMessage,  
-} from "../types/tool";
+import { ChatHistory, ToolMessage, UserMessage } from "../types/tool";
 import ResponsePanel from "../response/ResponsePanel";
 import FormSection from "./FormSection";
 import { AgentToolFunctionResponse } from "../../core/AgentToolFunction";
 
 const AIAgentUI = () => {
   const [loading, setLoading] = useState(false);
-  const [responseData, setResponseData] = useState<string|null>(null);
-  const [streamingData, setStreamingData] = useState<string|null>("");
+  const [responseData, setResponseData] = useState<string | null>(null);
+  const [streamingData, setStreamingData] = useState<string | null>("");
   const [chatHistory, setchatHistory] = useState<ChatHistory>({});
   const [useConversation, setUseConversation] = useState(false); // New state for checkbox
 
@@ -88,8 +81,12 @@ const AIAgentUI = () => {
           flexDirection: "column",
         }}
       >
-        <ResponsePanel responseData={responseData} streamingData={streamingData} 
-        setResponseData={setResponseData} setStreamingData={setStreamingData} />
+        <ResponsePanel
+          responseData={responseData}
+          streamingData={streamingData}
+          setResponseData={setResponseData}
+          setStreamingData={setStreamingData}
+        />
       </Col>
     </Row>
   );
