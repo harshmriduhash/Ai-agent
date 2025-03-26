@@ -21,7 +21,7 @@ const SelectEnvironment: FC<SelectEnvironmentProps> = ({
       defaultValue={defaultValue}
       placeholder="Select a Environment"
       onSelect={(value) => {
-        console.log(value)
+        console.log(value);
         const env = environments.find((env) => env.id === value);
         if (env) {
           onChange(value as string, env as Environment);
@@ -31,7 +31,9 @@ const SelectEnvironment: FC<SelectEnvironmentProps> = ({
       allowClear
     >
       {environments
-        .filter((e) => (envType ? e.type.toUpperCase() === envType.toUpperCase() : true))
+        .filter((e) =>
+          envType ? e.type.toUpperCase() === envType.toUpperCase() : true
+        )
         .map((environment: Environment) => (
           <Select.Option key={environment.id} value={environment.id}>
             {environment.name}
