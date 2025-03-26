@@ -17,7 +17,9 @@ const GetAIRoles: FC<GetAIRolesProps> = ({
   defaultValue,
 }) => {
   const [sysPromptList, setsysPromptList] = useState<SystemRolePrompt[]>([]);
-  const [filteredRoles, setFilteredRoles] = useState<{ value: string; label: string; }[]>([]);
+  const [filteredRoles, setFilteredRoles] = useState<
+    { value: string; label: string }[]
+  >([]);
 
   useEffect(() => {
     getRoleSystemPromptTemplates().then((data) => {
@@ -26,18 +28,21 @@ const GetAIRoles: FC<GetAIRolesProps> = ({
     });
   }, []);
 
-  const getRoles = (data: SystemRolePrompt[]) => data.map(
-    (systemRolePrompt: SystemRolePrompt) => {
+  const getRoles = (data: SystemRolePrompt[]) =>
+    data.map((systemRolePrompt: SystemRolePrompt) => {
       return {
         value: `${systemRolePrompt.id}`,
         label: `${systemRolePrompt.systemRole}`,
       };
-    }
-  );
+    });
 
-  const fetchRoleOptions = (data: SystemRolePrompt[]): { value: string; label: string; }[] => {
+  const fetchRoleOptions = (
+    data: SystemRolePrompt[]
+  ): { value: string; label: string }[] => {
     const roles = getRoles(data);
-    return existingRolesOnly ? roles : [{ value: "new_role", label: "New Role" }, ...roles];
+    return existingRolesOnly
+      ? roles
+      : [{ value: "new_role", label: "New Role" }, ...roles];
   };
 
   const onChanged = (value: string) => {
@@ -59,7 +64,7 @@ const GetAIRoles: FC<GetAIRolesProps> = ({
   };
 
   const onSearch = (value: string) => {
-    const filtered = fetchRoleOptions(sysPromptList).filter(role =>
+    const filtered = fetchRoleOptions(sysPromptList).filter((role) =>
       role.label.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredRoles(filtered);
