@@ -14,14 +14,15 @@ const TooltipParagraph: React.FC<ParagraphProps> = ({
 
   return (
     <Tooltip title={truncated ? children : undefined}>
-        {children}
-      <Paragraph ellipsis={{
+      {children}
+      <Paragraph
+        ellipsis={{
           rows,
-          expandable: 'collapsible',
+          expandable: "collapsible",
           expanded,
           onExpand: (_, info) => setExpanded(info.expanded),
         }}
-      
+
         // {...props}
         // ellipsis={{ ...ellipsis, onEllipsis: setTruncated }}
       >
